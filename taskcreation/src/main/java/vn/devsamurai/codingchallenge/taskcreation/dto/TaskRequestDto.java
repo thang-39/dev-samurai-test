@@ -6,7 +6,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class TaskRequest {
+public class TaskRequestDto {
 
     private String assigner;
     private String assignee;

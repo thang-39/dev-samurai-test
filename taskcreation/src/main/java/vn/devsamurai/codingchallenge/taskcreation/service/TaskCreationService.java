@@ -1,10 +1,10 @@
 package vn.devsamurai.codingchallenge.taskcreation.service;
 
-import vn.devsamurai.codingchallenge.taskcreation.dto.TaskRequest;
-import vn.devsamurai.codingchallenge.taskcreation.dto.TaskResponse;
+import vn.devsamurai.codingchallenge.taskcreation.dto.TaskRequestDto;
+import vn.devsamurai.codingchallenge.taskcreation.dto.TaskResponseDto;
 
 public interface TaskCreationService {
-    TaskResponse create(TaskRequest taskRequest);
+    TaskResponseDto create(TaskRequestDto taskRequestDto);
 
     void test(String str);
 }

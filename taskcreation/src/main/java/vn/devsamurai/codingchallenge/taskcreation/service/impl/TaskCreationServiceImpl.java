@@ -4,8 +4,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import vn.devsamurai.codingchallenge.taskcreation.dto.TaskRequest;
-import vn.devsamurai.codingchallenge.taskcreation.dto.TaskResponse;
+import vn.devsamurai.codingchallenge.taskcreation.dto.TaskRequestDto;
+import vn.devsamurai.codingchallenge.taskcreation.dto.TaskResponseDto;
 import vn.devsamurai.codingchallenge.taskcreation.entity.Task;
 import vn.devsamurai.codingchallenge.taskcreation.service.TaskCreationService;
 
@@ -18,21 +18,21 @@ public class TaskCreationServiceImpl implements TaskCreationService {
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
 
-    public TaskResponse create(TaskRequest taskRequest) {
+    public TaskResponseDto create(TaskRequestDto taskRequestDto) {
         Task newTask = Task.builder()
                 .id(UUID.randomUUID().toString())
                 .createdDate(LocalDateTime.now())
-                .assigner(taskRequest.getAssigner())
-                .assignee(taskRequest.getAssignee())
-                .startDay(taskRequest.getStartDay())
-                .dueDay(taskRequest.getDueDay())
-                .content(taskRequest.getContent())
+                .assigner(taskRequestDto.getAssigner())
+                .assignee(taskRequestDto.getAssignee())
+                .startDay(taskRequestDto.getStartDay())
+                .dueDay(taskRequestDto.getDueDay())
+                .content(taskRequestDto.getContent())
                 .build();
 
         System.out.println("task: " + newTask);
         kafkaTemplate.send("newTask1", newTask);
 
-        TaskResponse response = new TaskResponse();
+        TaskResponseDto response = new TaskResponseDto();
         BeanUtils.copyProperties(newTask, response);
         System.out.println("response: " + response);
         return response;

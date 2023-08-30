@@ -1,5 +1,19 @@
+server:
+  port: 5001
+
 
 spring:
+
+  h2:
+    console:
+      enabled: 'true'
+  datasource:
+    username: sa
+    url: jdbc:h2:mem:task
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+
   kafka:
     listener:
       ack-mode: MANUAL_IMMEDIATE
@@ -9,10 +23,3 @@ spring:
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
-#       properties:
-#         spring:
-#           json:
-#             trusted:
-#               packages: '*'
-server:
-  port: 5001
