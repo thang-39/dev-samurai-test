@@ -25,10 +25,10 @@ public class Task {
     private String assignee;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime startDay;
+    private LocalDateTime startDate;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime dueDay;
+    private LocalDateTime dueDate;
 
     private String content;
 }

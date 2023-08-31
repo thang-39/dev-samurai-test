@@ -23,9 +23,6 @@ public class TaskConsumer {
         BeanUtils.copyProperties(task, newTask);
         taskService.save(newTask);
         ack.acknowledge();
-
-
-
     }
 
     @KafkaListener(topics = "testString",

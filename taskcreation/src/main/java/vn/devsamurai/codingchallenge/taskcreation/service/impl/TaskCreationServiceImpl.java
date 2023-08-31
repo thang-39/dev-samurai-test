@@ -24,22 +24,16 @@ public class TaskCreationServiceImpl implements TaskCreationService {
                 .createdDate(LocalDateTime.now())
                 .assigner(taskRequestDto.getAssigner())
                 .assignee(taskRequestDto.getAssignee())
-                .startDay(taskRequestDto.getStartDay())
-                .dueDay(taskRequestDto.getDueDay())
+                .startDate(taskRequestDto.getStartDate())
+                .dueDate(taskRequestDto.getDueDate())
                 .content(taskRequestDto.getContent())
                 .build();
 
-        System.out.println("task: " + newTask);
         kafkaTemplate.send("newTask1", newTask);
 
         TaskResponseDto response = new TaskResponseDto();
         BeanUtils.copyProperties(newTask, response);
-        System.out.println("response: " + response);
         return response;
     }
 
-    @Override
-    public void test(String str) {
-        kafkaTemplate.send("testString", str);
-    }
 }

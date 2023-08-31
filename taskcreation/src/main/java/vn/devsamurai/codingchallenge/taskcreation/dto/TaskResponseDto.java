@@ -8,15 +8,19 @@ import java.time.LocalDateTime;
 @Data
 public class TaskResponseDto {
 
+    private String id;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdDate;
+
     private String assigner;
     private String assignee;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime startDay;
+    private LocalDateTime startDate;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime dueDay;
+    private LocalDateTime dueDate;
+
     private String content;
 }

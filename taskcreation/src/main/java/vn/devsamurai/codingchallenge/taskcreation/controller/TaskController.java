@@ -8,6 +8,8 @@ import vn.devsamurai.codingchallenge.taskcreation.dto.TaskRequestDto;
 import vn.devsamurai.codingchallenge.taskcreation.dto.TaskResponseDto;
 import vn.devsamurai.codingchallenge.taskcreation.service.TaskCreationService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/task")
 public class TaskController {
@@ -16,14 +18,8 @@ public class TaskController {
     private TaskCreationService service;
 
     @PostMapping("/create")
-    public ResponseEntity<TaskResponseDto> create(@RequestBody TaskRequestDto taskRequestDto) {
+    public ResponseEntity<TaskResponseDto> create(@Valid @RequestBody TaskRequestDto taskRequestDto) {
         System.out.println(taskRequestDto);
         return new ResponseEntity<>(service.create(taskRequestDto), HttpStatus.CREATED);
-    }
-
-    @PostMapping("/test/{str}")
-    public ResponseEntity<String> test(@PathVariable String str) {
-        service.test(str);
-        return new ResponseEntity<>(str, HttpStatus.CREATED);
     }
 }

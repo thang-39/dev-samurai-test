@@ -6,5 +6,4 @@ import vn.devsamurai.codingchallenge.taskcreation.dto.TaskResponseDto;
 public interface TaskCreationService {
     TaskResponseDto create(TaskRequestDto taskRequestDto);
 
-    void test(String str);
 }
