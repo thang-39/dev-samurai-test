@@ -3,6 +3,9 @@
 <head>
     <title>Task List</title>
     <link th:href="@{/tasks-stylesheet.css}" rel="stylesheet">
+    <!--    bootstrap declaration-->
+
+    <script src="https://kit.fontawesome.com/15cac81045.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="topnav">
@@ -23,6 +26,7 @@
                     <th>Due Date</th>
                     <th>Content</th>
                     <th>Completed</th>
+                    <th>Update</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,12 +40,19 @@
                     <td th:text="${task.content}"></td>
 
                     <td>
-                        <span th:if="${task.completed}">&#x2713;</span>
+                        <a th:if="${task.completed == true}" class="fa-solid fa-check-circle fa-2x icon-green"
+                           th:href="@{'/complete/' + ${task.id} + '/false'}"
+                           title="Uncompleted this task"></a>
+
+                        <a th:if="${task.completed == false}" class="fa-solid fa-circle fa-2x icon-dark"
+                           th:href="@{'/complete/' + ${task.id} + '/true'}"
+                           title="Completed this task"></a>
                     </td>
 
-
-
-
+                    <td>
+                        <a role="button" class="update" th:href="@{/delete/(id = ${task.id})}">Delete</a>
+                        <a role="button" class="update" th:href="@{/create/(id = ${task.id})}">Update</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

@@ -17,6 +17,8 @@ import java.time.LocalDateTime;
 @DueDateAfterStart
 public class TaskRequestDto {
 
+    private String id;
+
 //    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 //    private LocalDateTime createdDate;
 

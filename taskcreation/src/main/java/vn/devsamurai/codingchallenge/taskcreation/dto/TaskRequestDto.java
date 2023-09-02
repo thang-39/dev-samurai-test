@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 @DueDateAfterStart
 public class TaskRequestDto {
 
+    private String id;
+
     private String assigner;
     private String assignee;
 

@@ -84,6 +84,16 @@ public class TaskServiceImpl implements TaskService {
         return task.isCompleted();
     }
 
+    @Override
+    public TaskRequestDto findTaskRequestDtoById(String id) {
+        Task task = unwarpTask(taskRepository.findById(id), id);
+        TaskRequestDto taskRequestDto = new TaskRequestDto();
+        BeanUtils.copyProperties(task, taskRequestDto);
+        return taskRequestDto;
+    }
+
+
+
     static Task unwarpTask(Optional<Task> entity, String id) {
         if (entity.isPresent()) return entity.get();
         throw new TaskNotFoundException(id);

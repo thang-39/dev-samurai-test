@@ -20,4 +20,6 @@ public interface TaskService {
 
     Boolean updateTaskStatus(String id, boolean status);
 
+    TaskRequestDto findTaskRequestDtoById(String id);
+
 }
