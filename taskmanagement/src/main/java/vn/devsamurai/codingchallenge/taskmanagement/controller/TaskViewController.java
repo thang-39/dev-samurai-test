@@ -23,17 +23,14 @@ import java.util.List;
 @Controller
 public class TaskViewController {
 
-//    @Autowired
-//    private RestTemplate restTemplate;
-//
-////    @Value("${microservices.taskCreation}")
-//    private String taskCreationServiceUrl = "http://localhost:5000/api/v1/task/create";
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @Value("${microservices.taskCreation}")
+    private String taskCreationServiceUrl;
 
     @Autowired
     private TaskService taskService;
-
-//    @Autowired
-//    private TaskCreationService taskCreationService;
 
     @GetMapping("/list")
     public String taskList(Model model) {
@@ -44,19 +41,19 @@ public class TaskViewController {
 
     @GetMapping("/create")
     public String createTask(Model model) {
-        model.addAttribute("newTask", new TaskRequestDto());
+        model.addAttribute("task", new TaskRequestDto());
         return "createTask";
     }
 
     @PostMapping("/handleSubmit")
-    public String submitForm(TaskRequestDto dto) {
-//        ResponseEntity<TaskResponseDtoFromCreation> response = restTemplate
-//                .postForEntity(
-//                        taskCreationServiceUrl,
-//                        dto,
-//                        TaskResponseDtoFromCreation.class);
-//        System.out.println(response);
-        return "abc";
+    public String submitForm(TaskRequestDto task) {
+        ResponseEntity<TaskResponseDtoFromCreation> response = restTemplate
+                .postForEntity(
+                        taskCreationServiceUrl,
+                        task,
+                        TaskResponseDtoFromCreation.class);
+        System.out.println(response);
+        return "redirect:/list";
     }
 
 

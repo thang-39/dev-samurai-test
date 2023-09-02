@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import vn.devsamurai.codingchallenge.taskmanagement.validation.DueDateAfterStart;
 
 import javax.validation.constraints.NotBlank;
@@ -22,10 +23,10 @@ public class TaskRequestDto {
     private String assigner;
     private String assignee;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime startDate;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime dueDate;
 
     @NotBlank

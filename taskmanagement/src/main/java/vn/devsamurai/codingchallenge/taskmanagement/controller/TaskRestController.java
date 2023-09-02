@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import vn.devsamurai.codingchallenge.taskmanagement.dto.TaskRequestDto;
 import vn.devsamurai.codingchallenge.taskmanagement.dto.TaskResponseDto;
+import vn.devsamurai.codingchallenge.taskmanagement.dto.TaskResponseDtoFromCreation;
 import vn.devsamurai.codingchallenge.taskmanagement.service.TaskService;
 
 import javax.validation.Valid;
@@ -14,6 +16,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/task")
 public class TaskRestController {
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+//    @Value("${microservices.taskCreation}")
+    private String taskCreationServiceUrl = "http://localhost:5000/api/v1/task/create";
 
     @Autowired
     private TaskService taskService;
@@ -44,6 +52,17 @@ public class TaskRestController {
     public ResponseEntity<HttpStatus> deleteTask(@PathVariable String id) {
         taskService.deleteTask(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("/test")
+    public String restTemplateTest(@RequestBody TaskRequestDto dto) {
+        ResponseEntity<TaskResponseDtoFromCreation> response = restTemplate
+                .postForEntity(
+                        taskCreationServiceUrl,
+                        dto,
+                        TaskResponseDtoFromCreation.class);
+        System.out.println(response);
+        return "ok";
     }
 
 }

@@ -27,4 +27,4 @@ spring:
 
 
 microservices:
-  taskCreation: localhost:5000/api/v1/task/create
+  taskCreation: http://localhost:5000/api/v1/task/create

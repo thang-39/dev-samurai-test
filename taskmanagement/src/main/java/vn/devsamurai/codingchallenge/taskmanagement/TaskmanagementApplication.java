@@ -22,9 +22,8 @@ public class TaskmanagementApplication {
 		return new JsonMessageConverter();
 	}
 
-//	@Bean
-//
-//	public RestTemplate restTemplate() {
-//		return new RestTemplate();
-//	}
+	@Bean
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
 }
