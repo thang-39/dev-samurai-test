@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Task List</title>
+    <style>
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+<h1>Task List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Created Date</th>
+        <th>Assigner</th>
+        <th>Assignee</th>
+        <th>Start Date</th>
+        <th>Due Date</th>
+        <th>Content</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="task : ${tasks}">
+        <td th:text="${task.id}" th:class="${task.isDone} ? 'completed'"></td>
+        <td th:text="${task.createdDate}" th:class="${task.isDone} ? 'completed'"></td>
+        <td th:text="${task.assigner}" th:class="${task.isDone} ? 'completed'"></td>
+        <td th:text="${task.assignee}" th:class="${task.isDone} ? 'completed'"></td>
+        <td th:text="${task.startDate}" th:class="${task.isDone} ? 'completed'"></td>
+        <td th:text="${task.dueDate}" th:class="${task.isDone} ? 'completed'"></td>
+        <td th:text="${task.content}" th:class="${task.isDone} ? 'completed'"></td>
+        <td>
+            <span th:if="${task.isDone}">&#x2713;</span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

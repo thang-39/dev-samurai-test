@@ -1,21 +1,11 @@
-package vn.devsamurai.codingchallenge.taskmanagement.entity;
+package vn.devsamurai.codingchallenge.taskmanagement.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.*;
+import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.time.LocalDateTime;
-@Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@ToString
-public class Task {
-
-    @Id
+@Data
+public class TaskResponseDtoFromCreation {
     private String id;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -31,8 +21,4 @@ public class Task {
     private LocalDateTime dueDate;
 
     private String content;
-
-    private boolean isCompleted;
-
-
 }

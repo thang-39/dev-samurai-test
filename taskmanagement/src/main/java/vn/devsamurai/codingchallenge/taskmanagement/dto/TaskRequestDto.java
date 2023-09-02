@@ -16,8 +16,8 @@ import java.time.LocalDateTime;
 @DueDateAfterStart
 public class TaskRequestDto {
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime createdDate;
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    private LocalDateTime createdDate;
 
     private String assigner;
     private String assignee;
@@ -30,4 +30,7 @@ public class TaskRequestDto {
 
     @NotBlank
     private String content;
+
+//    @NotBlank
+//    private boolean isCompleted;
 }

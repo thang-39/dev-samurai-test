@@ -12,7 +12,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/task")
-public class TaskController {
+public class TaskCreationController {
 
     @Autowired
     private TaskCreationService service;

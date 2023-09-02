@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.devsamurai.codingchallenge.taskmanagement.dto.TaskRequestDto;
 import vn.devsamurai.codingchallenge.taskmanagement.dto.TaskResponseDto;
-import vn.devsamurai.codingchallenge.taskmanagement.entity.Task;
 import vn.devsamurai.codingchallenge.taskmanagement.service.TaskService;
 
 import javax.validation.Valid;
@@ -14,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/task")
-public class TaskController {
+public class TaskRestController {
 
     @Autowired
     private TaskService taskService;
@@ -33,6 +32,12 @@ public class TaskController {
     public ResponseEntity<TaskResponseDto> updateTask(@PathVariable String id,
                                                       @Valid @RequestBody TaskRequestDto taskRequestDto) {
         return new ResponseEntity<>(taskService.updateTask(id, taskRequestDto), HttpStatus.OK);
+    }
+
+    @PatchMapping("/{id}/isCompleted/{status}")
+    public ResponseEntity<Boolean> updateTaskStatus(@PathVariable String id,
+                                                       @PathVariable boolean status) {
+        return new ResponseEntity<>(taskService.updateTaskStatus(id, status), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Task List</title>
+    <link th:href="@{/tasks-stylesheet.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="topnav">
+        <a th:href="@{/view/tasks/create}">Create</a>
+        <a th:href="@{/view/tasks}" class="active">Task List</a>
+    </div>
+
+    <div class="container">
+        <h2>Task List</h2>
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Created Date</th>
+                    <th>Assigner</th>
+                    <th>Assignee</th>
+                    <th>Start Date</th>
+                    <th>Due Date</th>
+                    <th>Content</th>
+                    <th>Completed</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="task : ${tasks}">
+                    <td th:text="${task.id}"></td>
+                    <td th:text="${task.createdDate}"></td>
+                    <td th:text="${task.assigner}"></td>
+                    <td th:text="${task.assignee}"></td>
+                    <td th:text="${task.startDate}"></td>
+                    <td th:text="${task.dueDate}"></td>
+                    <td th:text="${task.content}"></td>
+
+                    <td>
+                        <span th:if="${task.completed}">&#x2713;</span>
+                    </td>
+
+
+
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

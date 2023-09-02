@@ -28,4 +28,6 @@ public class TaskResponseDto {
     private LocalDateTime dueDate;
 
     private String content;
+
+    private boolean isCompleted;
 }

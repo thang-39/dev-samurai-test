@@ -3,6 +3,7 @@ package vn.devsamurai.codingchallenge.taskmanagement.service.impl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import vn.devsamurai.codingchallenge.taskmanagement.dto.TaskMessage;
 import vn.devsamurai.codingchallenge.taskmanagement.dto.TaskRequestDto;
 import vn.devsamurai.codingchallenge.taskmanagement.dto.TaskResponseDto;
 import vn.devsamurai.codingchallenge.taskmanagement.entity.Task;
@@ -13,7 +14,6 @@ import vn.devsamurai.codingchallenge.taskmanagement.service.TaskService;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -22,8 +22,11 @@ public class TaskServiceImpl implements TaskService {
     private TaskRepository taskRepository;
 
     @Override
-    public void save(Task task) {
-        taskRepository.save(task);
+    public void save(TaskMessage taskMessage) {
+        Task newTask = new Task();
+        BeanUtils.copyProperties(taskMessage, newTask);
+        newTask.setCompleted(false);
+        taskRepository.save(newTask);
     }
 
     @Override
@@ -48,6 +51,7 @@ public class TaskServiceImpl implements TaskService {
         task.setDueDate(taskRequestDto.getDueDate());
         task.setStartDate(taskRequestDto.getStartDate());
         task.setContent(taskRequestDto.getContent());
+//        task.setCompleted(taskRequestDto.isCompleted());
 
         taskRepository.save(task);
 
@@ -70,6 +74,14 @@ public class TaskServiceImpl implements TaskService {
             BeanUtils.copyProperties(task, dto);
             return dto;
         }).toList();
+    }
+
+    @Override
+    public Boolean updateTaskStatus(String id, boolean status) {
+        Task task = unwarpTask(taskRepository.findById(id), id);
+        task.setCompleted(status);
+        taskRepository.save(task);
+        return task.isCompleted();
     }
 
     static Task unwarpTask(Optional<Task> entity, String id) {

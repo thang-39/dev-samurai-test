@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <link th:href="@{/form-stylesheet.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="topnav">
+        <a th:href="@{/view/tasks/create}" class="active">Create</a>
+        <a th:href="@{/view/tasks}" >Task List</a>
+    </div>
+
+    <div>
+        <h2>Create Task</h2>
+        <form method="post" th:object="${newTask}" th:action="@{/handleSubmit}">
+            <input type="text" placeholder="Assigner" th:field="*{assigner}">
+            <input type="text" placeholder="Assignee" th:field="*{assignee}">
+            <input type="datetime-local" placeholder="Start Date" th:field="*{startDate}">
+            <input type="datetime-local" placeholder="Due Date" th:field="*{dueDate}">
+            <input type="text" placeholder="Content" th:field="*{content}">
+            <br/>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</body>
+</html>

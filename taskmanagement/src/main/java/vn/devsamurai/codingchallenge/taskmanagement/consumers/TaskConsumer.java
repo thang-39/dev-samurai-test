@@ -18,10 +18,8 @@ public class TaskConsumer {
 
     @KafkaListener(topics = "newTask1",
             groupId = "${spring.kafka.consumer.group-id}")
-    public void consume(@Payload TaskMessage task, Acknowledgment ack) {
-        Task newTask = new Task();
-        BeanUtils.copyProperties(task, newTask);
-        taskService.save(newTask);
+    public void consume(@Payload TaskMessage taskMessage, Acknowledgment ack) {
+        taskService.save(taskMessage);
         ack.acknowledge();
     }
 
