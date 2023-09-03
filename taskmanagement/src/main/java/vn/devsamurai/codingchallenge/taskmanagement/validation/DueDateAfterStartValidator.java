@@ -12,12 +12,22 @@ public class DueDateAfterStartValidator implements ConstraintValidator<DueDateAf
     }
 
     @Override
-    public boolean isValid(TaskRequestDto taskRequestDto, ConstraintValidatorContext constraintValidatorContext) {
+    public boolean isValid(TaskRequestDto taskRequestDto,
+                           ConstraintValidatorContext context) {
+        boolean isValid;
+
         if (taskRequestDto.getStartDate() == null || taskRequestDto.getDueDate() == null) {
             // If either startDay or dueDay is null, skip validation
-            return true;
+            isValid =  true;
         }
 
-        return taskRequestDto.getDueDate().isAfter(taskRequestDto.getStartDate());
+        isValid = taskRequestDto.getDueDate().isAfter(taskRequestDto.getStartDate());
+
+        if (!isValid) {
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate(context.getDefaultConstraintMessageTemplate())
+                    .addPropertyNode("dueDate").addConstraintViolation();
+        }
+        return isValid;
     }
 }

@@ -18,6 +18,8 @@
             <input type="hidden" th:field="*{id}">
             <input type="text" placeholder="Assigner" th:field="*{assigner}">
             <input type="text" placeholder="Assignee" th:field="*{assignee}">
+
+            <p style="color:red" th:errors="*{dueDate}"></p>
             <input type="datetime-local" placeholder="Start Date" th:field="*{startDate}">
             <input type="datetime-local" placeholder="Due Date" th:field="*{dueDate}">
 

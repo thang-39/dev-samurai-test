@@ -64,7 +64,6 @@ public class TaskViewController {
     @PostMapping("/handleSubmit")
     public String submitForm(@Valid @ModelAttribute("task") TaskRequestDto task,
                              BindingResult result) {
-
         if (result.hasErrors()) return "createTask";
 
         if (Objects.equals(task.getId(), "")) {
