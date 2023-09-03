@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -17,6 +18,7 @@ import vn.devsamurai.codingchallenge.taskmanagement.entity.Task;
 import vn.devsamurai.codingchallenge.taskmanagement.exception.TaskNotFoundException;
 import vn.devsamurai.codingchallenge.taskmanagement.service.TaskService;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 
@@ -43,24 +45,28 @@ public class TaskViewController {
     public String createTask(Model model,
                              @RequestParam(required = false) String id) {
 
-        TaskRequestDto request;
+        TaskRequestDto task;
 
-        if (id == null) {
-            request = new TaskRequestDto();
+        if (id == null || id.equals("")) {
+            task = new TaskRequestDto();
         } else {
             try {
-                request = taskService.findTaskRequestDtoById(id);
+                task = taskService.findTaskRequestDtoById(id);
             } catch (TaskNotFoundException ex) {
-                request = new TaskRequestDto();
+                task = new TaskRequestDto();
             }
         }
 
-        model.addAttribute("task", request);
+        model.addAttribute("task", task);
         return "createTask";
     }
 
     @PostMapping("/handleSubmit")
-    public String submitForm(TaskRequestDto task) {
+    public String submitForm(@Valid @ModelAttribute("task") TaskRequestDto task,
+                             BindingResult result) {
+
+        if (result.hasErrors()) return "createTask";
+
         if (Objects.equals(task.getId(), "")) {
             ResponseEntity<TaskResponseDtoFromCreation> response = restTemplate
                     .postForEntity(

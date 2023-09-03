@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Title</title>
     <link th:href="@{/form-stylesheet.css}" rel="stylesheet">
@@ -18,6 +20,9 @@
             <input type="text" placeholder="Assignee" th:field="*{assignee}">
             <input type="datetime-local" placeholder="Start Date" th:field="*{startDate}">
             <input type="datetime-local" placeholder="Due Date" th:field="*{dueDate}">
+
+            <p style="color:red" th:errors="*{content}"></p>
+<!--            <p th:if="${#fields.hasErrors('content')}">not blank</p>-->
             <input type="text" placeholder="Content" th:field="*{content}">
             <br/>
             <input type="submit" value="Submit">

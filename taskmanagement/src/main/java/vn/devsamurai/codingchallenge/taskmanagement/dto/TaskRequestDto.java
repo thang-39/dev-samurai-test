@@ -31,7 +31,7 @@ public class TaskRequestDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime dueDate;
 
-    @NotBlank
+    @NotBlank(message = "Content can not be blank")
     private String content;
 
 //    @NotBlank

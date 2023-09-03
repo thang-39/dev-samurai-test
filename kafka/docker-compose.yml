@@ -1,11 +1,10 @@
-version: "3.4"
+version: "3.3"
 
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:6.2.0
     container_name: zookeeper
-    networks:
-      - kafka_default
+
     ports:
       - "2181:2181"
     environment:
@@ -20,8 +19,6 @@ services:
 
     depends_on:
       - zookeeper
-    networks:
-      - kafka_default
     ports:
       - "9092:9092"
     expose:
@@ -41,38 +38,13 @@ services:
       # KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
 
-  taskcreation:
-    image: minhthangdunia/devsamurai-taskcreation:0.0.1-SNAPSHOT
-    mem_limit: 700m
-    ports:
-      - "5000:5000"
-    environment:
-      - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
-    networks:
-      - kafka_default
-    depends_on:
-      - kafka
-
-  taskmanagement:
-    image: minhthangdunia/devsamurai-taskmanagement:0.0.1-SNAPSHOT
-    mem_limit: 700m
-    ports:
-      - "5001:5001"
-    environment:
-      - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
-      - microservices.taskCreation=http://taskcreation:5000/api/v1/task/create
-    networks:
-      - kafka_default
-    depends_on:
-      - kafka
-
-
 volumes:
   zookeeper_data:
     driver: local
   kafka_data:
     driver: local
 
-networks:
-  kafka_default:
-    driver: bridge
+# networks:
+#   default:
+#     external:
+#       name: techbankNet
