@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface DueDateAfterStart {
-    String message() default "Due day must be after start day";
+    String message() default "Due date must be after start date";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

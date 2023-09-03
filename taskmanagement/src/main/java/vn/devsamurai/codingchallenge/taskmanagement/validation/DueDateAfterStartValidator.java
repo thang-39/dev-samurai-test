@@ -19,9 +19,9 @@ public class DueDateAfterStartValidator implements ConstraintValidator<DueDateAf
         if (taskRequestDto.getStartDate() == null || taskRequestDto.getDueDate() == null) {
             // If either startDay or dueDay is null, skip validation
             isValid =  true;
-        }
+        } else isValid = taskRequestDto.getDueDate().isAfter(taskRequestDto.getStartDate());
 
-        isValid = taskRequestDto.getDueDate().isAfter(taskRequestDto.getStartDate());
+
 
         if (!isValid) {
             context.disableDefaultConstraintViolation();
