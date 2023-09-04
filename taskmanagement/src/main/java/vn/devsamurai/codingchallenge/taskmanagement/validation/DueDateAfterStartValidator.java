@@ -21,8 +21,6 @@ public class DueDateAfterStartValidator implements ConstraintValidator<DueDateAf
             isValid =  true;
         } else isValid = taskRequestDto.getDueDate().isAfter(taskRequestDto.getStartDate());
 
-
-
         if (!isValid) {
             context.disableDefaultConstraintViolation();
             context.buildConstraintViolationWithTemplate(context.getDefaultConstraintMessageTemplate())
