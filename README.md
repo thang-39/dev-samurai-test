@@ -33,7 +33,7 @@ On Main Branch, I have finish 2 microservices:
 # For Running with docker
 - install docker
 - download docker-compose.yaml file in main branch
-- open terminal in this folder and run: docker-compose up
+- open terminal in the folder contained docker-compose.yaml file and run: ```docker-compose up```
 
 # My Limitation
 - Security for microservice is hard, and I am finding way to do,
