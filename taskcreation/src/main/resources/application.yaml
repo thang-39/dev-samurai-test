@@ -5,7 +5,7 @@ server:
 spring:
 
   application:
-    name: taskcreation
+    name: task-creation
 
   kafka:
     producer:
@@ -15,6 +15,8 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 eureka:
+  instance:
+    hostname: localhost
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka

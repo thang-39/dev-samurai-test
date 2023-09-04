@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <link th:href="@{/form-stylesheet.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="topnav">
+        <a th:href="@{/create}" class="active">Create</a>
+        <a th:href="@{/list}" >Task List</a>
+    </div>
+
+    <div>
+        <h2>Create Task</h2>
+        <form method="post" th:object="${task}" th:action="@{/handleSubmit}">
+            <input type="hidden" th:field="*{id}">
+            <input type="text" placeholder="Assigner" th:field="*{assigner}">
+            <input type="text" placeholder="Assignee" th:field="*{assignee}">
+
+            <p style="color:red" th:errors="*{dueDate}"></p>
+            <input type="datetime-local" placeholder="Start Date" th:field="*{startDate}">
+            <input type="datetime-local" placeholder="Due Date" th:field="*{dueDate}">
+
+            <p style="color:red" th:errors="*{content}"></p>
+<!--            <p th:if="${#fields.hasErrors('content')}">not blank</p>-->
+            <input type="text" placeholder="Content" th:field="*{content}">
+            <br/>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</body>
+</html>

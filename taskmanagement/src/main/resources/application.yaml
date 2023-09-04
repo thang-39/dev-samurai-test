@@ -4,7 +4,7 @@ server:
 
 spring:
   application:
-    name: taskmanagement
+    name: task-management
 
   h2:
     console:
@@ -40,9 +40,13 @@ spring:
 
 
 microservices:
-  taskCreation: http://localhost:5000/api/v1/task/create
+  taskCreation: http://localhost:9090/task-creation/api/v1/task/create
+#   taskCreation: http://task-creation/api/v1/task/create
+#   taskCreation: http://localhost:5000/api/v1/task/create
 
 eureka:
+  instance:
+    hostname: localhost
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
