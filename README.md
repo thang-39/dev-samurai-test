@@ -31,7 +31,7 @@ On Main Branch, I have finish 2 microservices:
 ![image](https://github.com/thang-39/dev-samurai-test/assets/91838559/a584bb9b-31b9-4792-a122-034ab49e5e18)
 
 # For Running with docker
-- install docker
+- install docker and open it
 - download docker-compose.yaml file in main branch
 - open terminal in the folder contained docker-compose.yaml file and run: ```docker-compose up```
 - go to ```http://localhost:5001/create``` to create task or ```http://localhost:5001/list``` to see all tasks
