@@ -34,7 +34,7 @@ On Main Branch, I have finish 2 microservices:
 - install docker
 - download docker-compose.yaml file in main branch
 - open terminal in the folder contained docker-compose.yaml file and run: ```docker-compose up```
-- go to http:\\localhost:5001/create to create task or http:\\localhost:5001/list to see all tasks
+- go to ```http://localhost:5001/create``` to create task or ```http://localhost:5001/list``` to see all tasks
 
 # My Limitation
 - Security for microservice is hard, and I am finding way to do,
