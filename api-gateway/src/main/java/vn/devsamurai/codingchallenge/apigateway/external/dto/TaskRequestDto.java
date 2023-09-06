@@ -1,24 +1,28 @@
-package vn.devsamurai.codingchallenge.taskcreation.dto;
+package vn.devsamurai.codingchallenge.apigateway.external.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import vn.devsamurai.codingchallenge.taskcreation.validation.DueDateAfterStart;
+import org.springframework.format.annotation.DateTimeFormat;
+import vn.devsamurai.codingchallenge.apigateway.external.validation.DueDateAfterStart;
+
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
-//@DueDateAfterStart
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+//@DueDateAfterStart
 public class TaskRequestDto {
 
     private String id;
+
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    private LocalDateTime createdDate;
 
     private String assigner;
     private String assignee;
@@ -31,4 +35,7 @@ public class TaskRequestDto {
 
     @NotBlank(message = "Content can not be blank")
     private String content;
+
+//    @NotBlank
+//    private boolean isCompleted;
 }
